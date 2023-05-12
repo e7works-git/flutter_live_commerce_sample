@@ -1,4 +1,4 @@
-package com.e7works.vchatcloud_live_commerce
+package com.vchatcloud.flutter.live_commerce
 
 import io.flutter.embedding.android.FlutterActivity
 

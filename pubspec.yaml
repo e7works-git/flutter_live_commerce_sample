@@ -50,7 +50,7 @@ dependencies:
   video_player_win: ^2.2.2
 
   logger: ^1.2.2
-  vchatcloud_flutter_sdk: ^1.0.1
+  vchatcloud_flutter_sdk: ^1.0.2
   universal_html: ^2.2.1
 
   flutter_native_splash: ^2.0.5

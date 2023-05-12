@@ -590,10 +590,10 @@ packages:
     dependency: "direct main"
     description:
       name: vchatcloud_flutter_sdk
-      sha256: "4280dde7e9801f33c5a2623ee10d7d4cff3ef276b1cd2b00887c7a5d3356ea6b"
+      sha256: "190f62071b241bd32b1cf55e6d3b0a5eeb3e41d0684f40d6c7fe89ecbc2d4c64"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   vector_graphics:
     dependency: transitive
     description:

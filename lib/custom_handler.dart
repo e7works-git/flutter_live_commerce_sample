@@ -27,16 +27,13 @@ class CustomHandler extends ChannelHandler {
   }
 
   @override
-  void onCustom(ChannelResultModel message) {}
+  void onCustom(ChannelMessageModel message) {}
 
   @override
-  void onJoinUser(ChannelResultModel message) async {
-    Map<String, dynamic> data = message.body;
-    var chatData = ChatItem.fromJson(
-      data
-        ..['messageType'] = MessageType.join
-        ..['clientKey'] = '',
-    );
+  void onJoinUser(ChannelMessageModel message) async {
+    var chatData = ChatItem.fromChannelMessageModel(message)
+      ..messageType = MessageType.join
+      ..clientKey = '';
     _channel.addChatLog(chatData);
 
     if (_channel.channel != null) {
@@ -45,20 +42,16 @@ class CustomHandler extends ChannelHandler {
   }
 
   @override
-  void onLeaveUser(ChannelResultModel message) {
-    Map<String, dynamic> data = message.body;
-    var chatData = ChatItem.fromJson(
-      data
-        ..['messageType'] = MessageType.leave
-        ..['clientKey'] = '',
-    );
+  void onLeaveUser(ChannelMessageModel message) {
+    var chatData = ChatItem.fromChannelMessageModel(message)
+      ..messageType = MessageType.leave
+      ..clientKey = '';
     _channel.addChatLog(chatData);
   }
 
   @override
-  void onMessage(ChannelResultModel message) {
-    Map<String, dynamic> data = message.body;
-    var chatData = ChatItem.fromJson(data);
+  void onMessage(ChannelMessageModel message) {
+    var chatData = ChatItem.fromChannelMessageModel(message);
     // 번역 사용 시
     if (chatData.mimeType == MimeType.text &&
         _channel.translateClientKeyMap[chatData.clientKey] != null) {
@@ -77,18 +70,16 @@ class CustomHandler extends ChannelHandler {
   }
 
   @override
-  void onNotice(ChannelResultModel message) {
-    Map<String, dynamic> data = message.body;
-    var chatData =
-        ChatItem.fromJson(data..['messageType'] = MessageType.notice);
+  void onNotice(ChannelMessageModel message) {
+    var chatData = ChatItem.fromChannelMessageModel(message)
+      ..messageType = MessageType.notice;
     _channel.addChatLog(chatData);
   }
 
   @override
-  void onWhisper(ChannelResultModel message) {
-    Map<String, dynamic> data = message.body;
-    var chatData =
-        ChatItem.fromJson(data..['messageType'] = MessageType.whisper);
+  void onWhisper(ChannelMessageModel message) {
+    var chatData = ChatItem.fromChannelMessageModel(message)
+      ..messageType = MessageType.whisper;
     _channel.addChatLog(chatData);
   }
 }
