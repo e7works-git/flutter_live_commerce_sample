@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.19.3 <3.0.0"
+  sdk: ">=2.19.3 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,7 +40,7 @@ dependencies:
   encrypt: ^5.0.1
   flutter_svg: ^2.0.4
   http: ^0.13.5
-  intl: ^0.17.0
+  intl: ^0.18.1
   provider: ^6.0.5
   shared_preferences: ^2.0.20
   url_launcher: ^6.1.10
@@ -50,7 +50,7 @@ dependencies:
   video_player_win: ^2.2.2
 
   logger: ^1.2.2
-  vchatcloud_flutter_sdk: ^1.0.2
+  vchatcloud_flutter_sdk: ^1.0.7
   universal_html: ^2.2.1
 
   flutter_native_splash: ^2.0.5

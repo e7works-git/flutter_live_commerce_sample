@@ -7,6 +7,7 @@ class ChannelStore extends ChangeNotifier {
   Channel? channel;
   List<ChatItem> chatLog = [];
   List<UserModel> clientList = [];
+  List<String> banClientList = [];
   Map<String, String> translateClientKeyMap = {};
 
   void setChannel(Channel channel) {

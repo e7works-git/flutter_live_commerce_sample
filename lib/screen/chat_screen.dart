@@ -96,7 +96,7 @@ class ChatScreenState extends State<ChatScreen> {
     _videoPlayerController.dispose();
     _scrollController.dispose();
     _focus.dispose();
-    channel.leave();
+    VChatCloud.disconnect(VChatCloudResult.success);
     super.dispose();
   }
 
@@ -380,8 +380,8 @@ class ChatScreenState extends State<ChatScreen> {
     emoji.initEmojiList();
     emoji.initChildEmojiList();
 
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         EmojiImages(),
         EmojiList(),
       ],

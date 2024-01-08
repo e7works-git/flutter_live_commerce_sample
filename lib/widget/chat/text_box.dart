@@ -36,9 +36,11 @@ class TextBox extends StatelessWidget {
       texts.add(
         TextSpan(
           text: n,
-          style: const TextStyle(
-            color: Color(0xffffffff),
-            fontSize: 14,
+          style: TextStyle(
+            color: const Color(0xffffffff),
+            fontWeight:
+                data.isDeleteChatting ? FontWeight.w200 : FontWeight.normal,
+            fontSize: 14.0,
           ),
         ),
       );

@@ -5,7 +5,7 @@ import 'package:flutter_live_commerce/vo/chat_item.dart';
 import 'package:provider/provider.dart';
 import 'package:vchatcloud_flutter_sdk/vchatcloud_flutter_sdk.dart';
 
-class ChatBaseItem extends StatelessWidget {
+class ChatBaseItem extends StatefulWidget {
   final ChatItem data;
   final Widget content;
 
@@ -16,17 +16,23 @@ class ChatBaseItem extends StatelessWidget {
   });
 
   @override
+  State<ChatBaseItem> createState() => _ChatBaseItemState();
+}
+
+class _ChatBaseItemState extends State<ChatBaseItem> {
+  @override
   Widget build(BuildContext context) {
     var channel = context.read<ChannelStore>().channel;
-    bool isWhisper = data.messageType == MessageType.whisper;
+    bool isWhisper = widget.data.messageType == MessageType.whisper;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
           onLongPress: () {
-            if (!data.isMe) {
-              Util.sendWhisperDialog(context, channel, data);
+            if (!widget.data.isMe && !widget.data.isDeleteChatting) {
+              Util.chatLongPressDialog(context, channel, widget.data)
+                  .then((_) => setState(() {}));
             }
           },
           child: Row(
@@ -48,7 +54,7 @@ class ChatBaseItem extends StatelessWidget {
                     Radius.circular(13),
                   ),
                   child: Image.asset(
-                    "assets/profile/profile_img_${data.userInfo?['profile'].toString() ?? '1'}.png",
+                    "assets/profile/profile_img_${widget.data.userInfo?['profile'].toString() ?? '1'}.png",
                   ),
                 ),
               ),
@@ -64,7 +70,7 @@ class ChatBaseItem extends StatelessWidget {
                       child: Opacity(
                         opacity: 0.8,
                         child: Text(
-                          data.nickName ?? '홍길동',
+                          widget.data.nickName ?? '홍길동',
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 14,
@@ -75,17 +81,17 @@ class ChatBaseItem extends StatelessWidget {
                     ),
                     if (isWhisper)
                       Text(
-                        data.isMe ? '님에게' : '님이',
+                        widget.data.isMe ? '님에게' : '님이',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Color(0x80ffffff),
                         ),
                       ),
                     const SizedBox(height: 5),
-                    content,
+                    widget.content,
                     const SizedBox(height: 5),
                     Text(
-                      Util.getCurrentDate(data.messageDt).toString(),
+                      Util.getCurrentDate(widget.data.messageDt).toString(),
                       style: const TextStyle(
                         color: Color.fromARGB(127, 255, 255, 255),
                         fontSize: 10,
